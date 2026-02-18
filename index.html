@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atomic Hosted UI Test</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { overflow: auto; }
+    atomic-hosted-ui { display: block; min-height: 100%; }
+  </style>
+</head>
+<body>
+<atomic-hosted-ui hosted-type="code"></atomic-hosted-ui>
+<div id="bottom"></div>
+
+<script async type="module"
+        src="https://static.cloud.coveo.com/atomic-hosted-page/v1/atomic-hosted-page/atomic-hosted-page.esm.js"></script>
+
+<script>
+  (async () => {
+    await customElements.whenDefined('atomic-hosted-ui');
+    const el = document.querySelector('atomic-hosted-ui');
+
+    await el.initialize({
+      organizationId: 'abbtrialjap4qzkj',
+      pageId: '6bd08d26-9d9f-4fc7-bb93-926fc84ecccc',
+      accessToken: '_____SEARCH_PAGE_API_KEY___',
+      environment: 'prod',
+      analytics: { analyticsMode: 'legacy' }
+    });
+
+    const bottom = document.getElementById('bottom');
+
+    const isNearBottom = (threshold = 160) => {
+      const doc = document.documentElement;
+      const remaining = doc.scrollHeight - window.scrollY - window.innerHeight;
+      return remaining < threshold;
+    };
+
+    const scrollToBottom = () => bottom.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+    const obs = new MutationObserver(() => {
+      if (isNearBottom()) scrollToBottom();
+    });
+
+    obs.observe(el, { childList: true, subtree: true, characterData: true });
+
+    scrollToBottom();
+  })();
+</script>
+</body>
+</html>
+
+
+
+<!-- await el.initialize({
+          organizationId: 'abbtrialjap4qzkj',
+          pageId: '6bd08d26-9d9f-4fc7-bb93-926fc84ecccc',
+          accessToken: 'xxa7f7e2b5-ad7b-477e-913c-629434107e7d',
+          environment: 'prod',
+          analytics: { analyticsMode: 'legacy' }
+        }); -->
