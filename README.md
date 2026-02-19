@@ -17,7 +17,7 @@ cd search-agent-local-host
 2) Add your API key & Page ID in `index.html`:
 
 ```js
-accessToken: "_____SEARCH_PAGE_API_KEY___",
+accessToken: "_____SEARCH_PAGE_API_KEY___", // Search Page API key
 ```
 ```js
 pageId: "_____SEARCH_PAGE_ID___",
