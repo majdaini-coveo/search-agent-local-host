@@ -14,12 +14,14 @@ git clone https://github.com/majdaini-coveo/search-agent-local-host.git
 cd search-agent-local-host
 ```
 
-2) Add your API key in `index.html`:
+2) Add your API key & Page ID in `index.html`:
 
 ```js
 accessToken: "_____SEARCH_PAGE_API_KEY___",
 ```
-
+```js
+pageId: "_____SEARCH_PAGE_ID___",
+```
 3) Start a local server from the project root:
 
 ```sh
